@@ -6,7 +6,7 @@ export type SaveCardResultStates = 'SUCCESS' | 'FAILED' | 'PENDING'
 
 export interface InitialState {
     //string key is intended as card token
-    addedCards: Record<string, CardAddFormValues> | null;
+    addedCards: Record<string, any> | null;
     saveCardResult: SaveCardResultStates
     apiErrorMsg: string
 }
