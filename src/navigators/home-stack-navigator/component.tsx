@@ -9,10 +9,13 @@ import BackArrowIcon from '@assets/images/backarrow-icon.svg'
 import {colors} from '@constants';
 import MyStrings from '@assets/strings/en.json';
 import {ScalingTouchable} from '@components';
+import { useDispatch } from 'react-redux';
+import { setApiErrorMessage } from 'src/actions/credit-card-actions';
 
 const RootStack = createNativeStackNavigator();
 
 export const HomeStackNavigator = () => {
+    const dispatch = useDispatch<any>();
     return (
         <SafeAreaView style={homeStackNavigatorStyles.root}>
             <StatusBar style={'dark'} />
@@ -32,6 +35,7 @@ export const HomeStackNavigator = () => {
                             return (
                                 <ScalingTouchable
                                     onPress={() => {
+                                        dispatch(setApiErrorMessage(''));
                                         navigation.navigate(RootStackScreenNames.CARD_ADD_SCREEN)
                                     }}>
                                     <PlusIcon width={'23'} height={'23'} fill={colors.plainBlack} />
