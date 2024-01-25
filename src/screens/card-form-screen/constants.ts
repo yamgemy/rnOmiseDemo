@@ -13,9 +13,9 @@ export type CardAddFormValues = {
 }
 
 export const CARD_ADD_MOCK_VALUES = {
-    [CardAddFormEnum.CARD_NUMBER]: '4985378940823405',
+    [CardAddFormEnum.CARD_NUMBER]: '4985 3789 4082 3405',
     [CardAddFormEnum.NAME_ON_CARD] : 'Geoffrey Daniel',
-    [CardAddFormEnum.EXPIRY_DATE]: '01/2022',
+    [CardAddFormEnum.EXPIRY_DATE]: '01/22',
     [CardAddFormEnum.CVV]: '535',
 }
 

@@ -8,6 +8,7 @@
     "strict": true,
     "skipLibCheck": true,
     "jsx": "react-native",
+    "baseUrl": "./",
     "paths": {
       "@constants": [
         "./src/constants/index.ts"
@@ -47,7 +48,19 @@
       ],
       "@utils/*": [
         "./src/utils/*"
-      ]
+      ],
+      "@hooks": [
+        "./src/hooks/index.ts"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@store": [
+        "./src/store/index.ts"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ],
     },
   },
   "include": [

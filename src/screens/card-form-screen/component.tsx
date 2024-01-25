@@ -4,27 +4,32 @@ import {styles} from './styles'
 import {yupResolver} from '@hookform/resolvers/yup';
 import {HookformLabeledTextInpout, ScreenFooterButton} from '@components'
 import {CARD_ADD_DEFAULT_VALUES, 
+    CARD_ADD_MOCK_VALUES, 
     //CARD_ADD_MOCK_VALUES, 
     CardAddFormEnum, CardAddFormValues} from './constants'
 import {useForm} from 'react-hook-form'
 import {cardAddFormScheme} from '@utils';
 import {addSlash, formatCardNumber} from './helpers';
+import {useAddCard} from '@hooks/use-add-card';
 
 export const CardFormScreen = () => {
+
+    const defaultFormValues = __DEV__
+    ? CARD_ADD_MOCK_VALUES
+    : CARD_ADD_DEFAULT_VALUES;
+
+    const [expiryDate, setExpiryDate] = useState<string>(defaultFormValues[CardAddFormEnum.EXPIRY_DATE]);
+    const [cardNumber, setCardNumber] = useState<string>(defaultFormValues[CardAddFormEnum.CARD_NUMBER]);
 
     const form = useForm<CardAddFormValues>({
         resolver: yupResolver(cardAddFormScheme),
         mode: 'onChange',
         shouldFocusError: true,
         reValidateMode: 'onChange',
-        // defaultValues: __DEV__
-        //   ? CARD_ADD_MOCK_VALUES
-        //   : CARD_ADD_DEFAULT_VALUES,
-        defaultValues: CARD_ADD_DEFAULT_VALUES
-      });
+        defaultValues: defaultFormValues
+    });
 
-      const [expiryDate, setExpiryDate] = useState<string>('');
-      const [cardNumber, setCardNumber] = useState<string>('');
+    const {executeSubmitCardInfo} = useAddCard({form});
 
     return (
         <>
@@ -71,7 +76,7 @@ export const CardFormScreen = () => {
                 </View>
             </View>
             <ScreenFooterButton
-                onPress={()=>{}}
+                onPress={executeSubmitCardInfo}
                 isLoading={false}
                 disabled={!form.formState.isValid }
                 pinToBottom={true}
