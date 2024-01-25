@@ -1,0 +1,56 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "es2015",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "jsx": "react-native",
+    "paths": {
+      "@constants": [
+        "./src/constants/index.ts"
+      ],
+      "@constants/*": [
+        "./src/constants/*"
+      ],
+      "@screens": [
+        "./src/screens/index.ts"
+      ],
+      "@screens/*": [
+        "./src/screens/*"
+      ],
+      "@navigators": [
+        "./src/navigators/index.ts"
+      ],
+      "@navigators/*": [
+        "./src/navigators/*"
+      ],
+      "@animations": [
+        "./src/animations/index.ts"
+      ],
+      "@animations/*": [
+        "./src/animations/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components": [
+        "./src/components/index.ts"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ]
+    },
+  },
+  "include": [
+    "src/**/*",
+    "tsconfig.json",
+    "App.js"
+  ],
+  "exclude": [
+    "build",
+    "node_modules",
+  ],
+}
