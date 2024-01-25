@@ -1,22 +1,32 @@
-import React, {useState} from 'react'
-import {View} from 'react-native'
-import {styles} from './styles'
-import {yupResolver} from '@hookform/resolvers/yup';
-import {HookformLabeledTextInpout, ScreenFooterButton} from '@components'
-import {CARD_ADD_DEFAULT_VALUES, 
-    CARD_ADD_MOCK_VALUES, 
+import React, { useEffect, useState } from 'react'
+import { View } from 'react-native'
+import { styles } from './styles'
+import { yupResolver } from '@hookform/resolvers/yup';
+import { HookformLabeledTextInpout, ScreenFooterButton } from '@components'
+import {
+    CARD_ADD_DEFAULT_VALUES,
+    CARD_ADD_MOCK_VALUES,
     //CARD_ADD_MOCK_VALUES, 
-    CardAddFormEnum, CardAddFormValues} from './constants'
-import {useForm} from 'react-hook-form'
-import {cardAddFormScheme} from '@utils';
-import {addSlash, formatCardNumber} from './helpers';
-import {useAddCard} from '@hooks/use-add-card';
+    CardAddFormEnum, CardAddFormValues
+} from './constants'
+import { useForm } from 'react-hook-form'
+import { cardAddFormScheme } from '@utils';
+import { addSlash, formatCardNumber } from './helpers';
+import { useAddCard } from '@hooks/use-add-card';
+import { appLoadingSelector } from 'src/selectors/application.selectors';
+import { useSelector } from 'react-redux';
+import { addCardResultSelector } from 'src/selectors/creditcards.selectors';
+import { useNavigation } from '@react-navigation/native';
 
 export const CardFormScreen = () => {
 
+    const isAppLoading = useSelector(appLoadingSelector);
+    const formSubmitResult = useSelector(addCardResultSelector);
+    const navigation = useNavigation();
+
     const defaultFormValues = __DEV__
-    ? CARD_ADD_MOCK_VALUES
-    : CARD_ADD_DEFAULT_VALUES;
+        ? CARD_ADD_MOCK_VALUES
+        : CARD_ADD_DEFAULT_VALUES;
 
     const [expiryDate, setExpiryDate] = useState<string>(defaultFormValues[CardAddFormEnum.EXPIRY_DATE]);
     const [cardNumber, setCardNumber] = useState<string>(defaultFormValues[CardAddFormEnum.CARD_NUMBER]);
@@ -29,7 +39,13 @@ export const CardFormScreen = () => {
         defaultValues: defaultFormValues
     });
 
-    const {executeSubmitCardInfo} = useAddCard({form});
+    const { executeSubmitCardInfo } = useAddCard({ form });
+
+    useEffect(()=>{
+        if (formSubmitResult === 'SUCCESS') {
+            navigation.canGoBack() && navigation.goBack();
+        }
+    },[formSubmitResult, navigation])
 
     return (
         <>
@@ -43,13 +59,13 @@ export const CardFormScreen = () => {
                     value={cardNumber}
                     valueSetter={setCardNumber}
                     maxLength={16 + 3}
-            />
+                />
                 <HookformLabeledTextInpout
                     label={'Name on card'}
                     inputName={CardAddFormEnum.NAME_ON_CARD}
                     form={form}
                     keyboardType='default'
-            />
+                />
                 <View style={styles.formRow}>
                     <View style={styles.slot}>
                         <HookformLabeledTextInpout
@@ -61,9 +77,9 @@ export const CardFormScreen = () => {
                             valueSetter={setExpiryDate}
                             modifiedString={addSlash}
                             maxLength={5}
-                    />
+                        />
                     </View>
-                    <View style={styles.dummySpace}/>
+                    <View style={styles.dummySpace} />
                     <View style={styles.slot}>
                         <HookformLabeledTextInpout
                             label={'CVV'}
@@ -71,14 +87,14 @@ export const CardFormScreen = () => {
                             form={form}
                             keyboardType='number-pad'
                             maxLength={4}
-                    />
+                        />
                     </View>
                 </View>
             </View>
             <ScreenFooterButton
                 onPress={executeSubmitCardInfo}
-                isLoading={false}
-                disabled={!form.formState.isValid }
+                isLoading={isAppLoading}
+                disabled={!form.formState.isValid || isAppLoading}
                 pinToBottom={true}
                 label={'Add Card'}
             />

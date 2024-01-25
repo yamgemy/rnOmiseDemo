@@ -61,6 +61,12 @@
       "@store/*": [
         "./src/store/*"
       ],
+      "@selectors": [
+        "src/selectors/index.ts"
+      ],
+      "@selectors/*": [
+        "src/selectors/*"
+      ],
     },
   },
   "include": [
