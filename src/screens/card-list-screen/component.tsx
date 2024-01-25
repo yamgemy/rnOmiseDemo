@@ -50,6 +50,7 @@ export const CardListScreen = () => {
                 data={cardsArray}
                 renderItem={renderCardItem}
                 keyExtractor={(item)=> item.id}
+                showsVerticalScrollIndicator={false}
                 ListEmptyComponent={(
                     <View style={styles.emptyListWrap}>
                         <Text style={styles.cardIcon}>💳</Text>
