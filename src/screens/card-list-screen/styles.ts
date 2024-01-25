@@ -1,4 +1,4 @@
-import {APP_WIDTH, colors, crossPlaformShadow} from "@constants";
+import {APP_HEIGHT, APP_WIDTH, colors, crossPlaformShadow} from "@constants";
 import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
@@ -37,7 +37,27 @@ export const styles = StyleSheet.create({
         fontSize: 10,
         fontWeight: '500'
     },
-    subTextWrap: {
-        
+    emptyListWrap: {
+        flex:1,
+        flexGrow:1,
+        height: APP_HEIGHT* 0.7,
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    emptyText:{
+        textAlign:'center',
+        fontSize: 18,
+        fontWeight: '400'
+    },
+    cardIcon:{
+        fontSize: 40,
+        paddingBottom: 16
+    },
+    addCardText:{
+     color: colors.cyan_1,
+     fontSize: 18,
+     fontWeight: '500',
+     marginTop: 16,
     }
 });

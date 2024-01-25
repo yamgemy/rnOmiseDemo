@@ -1,24 +1,26 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import {FlatList, ListRenderItemInfo, Text, View} from "react-native"
 import {styles} from './styles'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addedCardsSelector } from 'src/selectors/creditcards.selectors'
 import VisaLogo from '@assets/images/visa_color@2x.svg'
 import { ScalingTouchable } from '@components'
+import { setApiErrorMessage } from 'src/actions/credit-card-actions'
+import { useNavigation } from '@react-navigation/native'
+import { RootStackScreenNames } from '@constants'
 
 export const CardListScreen = () => {
+    const dispatch = useDispatch<any>()
+    const navigation = useNavigation<any>();
+
     const cards = useSelector(addedCardsSelector);
     const cardsArray = useMemo(()=> cards? Object.values(cards): [], [cards]);
-
-    useEffect(()=>{
-        console.log(cardsArray)
-    }, [cards])
 
     const renderCardItem = ({ item }: ListRenderItemInfo<any>) => {
         const {brand, name, expiration_month, expiration_year ,last_digits} = item;
 
         const SubTextView = (flex: number, title: string, value: string) =>  (
-            <View style={styles.subTextWrap}>
+            <View>
                 <Text style={styles.subTitleLabels}>{title}</Text>
                 <Text style={styles.subTitleValue}>{value}</Text>
             </View>    
@@ -44,16 +46,24 @@ export const CardListScreen = () => {
 
     return (
         <View style={styles.container}>
-            {cardsArray.length>0 ? (
-                <FlatList
-                    data={cardsArray}
-                    renderItem={renderCardItem}
-                    keyExtractor={(item)=> item.id}
+            <FlatList
+                data={cardsArray}
+                renderItem={renderCardItem}
+                keyExtractor={(item)=> item.id}
+                ListEmptyComponent={(
+                    <View style={styles.emptyListWrap}>
+                        <Text style={styles.cardIcon}>💳</Text>
+                        <Text style={styles.emptyText}>No Cards Found</Text>
+                        <Text style={styles.emptyText}>We recommend adding a card{'\n'}for easy payment</Text>
+                        <ScalingTouchable onPress={() => {
+                            dispatch(setApiErrorMessage(''));
+                            navigation.navigate(RootStackScreenNames.CARD_ADD_SCREEN)
+                        }}>
+                            <Text style={styles.addCardText}>Add a new card</Text>
+                        </ScalingTouchable>
+                    </View>    
+                    )}
                 />
-            ): (
-                <View/>
-            )}
-            
         </View>
     )
 }
