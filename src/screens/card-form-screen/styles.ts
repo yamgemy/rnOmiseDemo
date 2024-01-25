@@ -12,8 +12,12 @@ export const styles = StyleSheet.create({
         flexDirection:'row'
     },
     slot: {
-    flex:1
-},
-dummySpace:{
-width:20}
+        flex:1
+    },
+    dummySpace:{
+        width:20
+    },
+    errorMsg:{
+        color: 'red'
+    }
 });

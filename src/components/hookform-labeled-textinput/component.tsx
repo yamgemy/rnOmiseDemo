@@ -2,6 +2,8 @@ import React, {FC, useRef, useState} from 'react'
 import {Controller, UseFormReturn} from 'react-hook-form';
 import {Text, TextInput, TextInputProps, View} from 'react-native';
 import {styles} from './styles';
+import { useDispatch } from 'react-redux';
+import { setApiErrorMessage } from 'src/actions/credit-card-actions';
 
 interface HookFormLabeledTextInputProps extends TextInputProps {
     label: string;
@@ -24,7 +26,7 @@ export const HookformLabeledTextInpout: FC<HookFormLabeledTextInputProps> = ({
         control,
         formState: {defaultValues},
     } = form;
-
+    const dispatch = useDispatch<any>();
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const isEditingTImeoutRef = useRef<NodeJS.Timeout>();
 
@@ -42,6 +44,7 @@ export const HookformLabeledTextInpout: FC<HookFormLabeledTextInputProps> = ({
         isEditingTImeoutRef.current = setTimeout(() => {
             setIsEditing(false);
         }, 500);
+        dispatch(setApiErrorMessage(''))
     };
 
     return (

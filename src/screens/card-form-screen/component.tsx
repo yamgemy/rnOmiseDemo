@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import { styles } from './styles'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { HookformLabeledTextInpout, ScreenFooterButton } from '@components'
@@ -14,14 +14,16 @@ import { cardAddFormScheme } from '@utils';
 import { addSlash, formatCardNumber } from './helpers';
 import { useAddCard } from '@hooks/use-add-card';
 import { appLoadingSelector } from 'src/selectors/application.selectors';
-import { useSelector } from 'react-redux';
-import { addCardResultSelector } from 'src/selectors/creditcards.selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCardApiErrorMessageSelector, addCardResultSelector } from 'src/selectors/creditcards.selectors';
 import { useNavigation } from '@react-navigation/native';
+import { setAddCardResult } from 'src/actions/credit-card-actions';
 
 export const CardFormScreen = () => {
-
+    const dispatch = useDispatch<any>();
     const isAppLoading = useSelector(appLoadingSelector);
     const formSubmitResult = useSelector(addCardResultSelector);
+    const apiErrorMsg = useSelector(addCardApiErrorMessageSelector);
     const navigation = useNavigation();
 
     const defaultFormValues = __DEV__
@@ -43,9 +45,10 @@ export const CardFormScreen = () => {
 
     useEffect(()=>{
         if (formSubmitResult === 'SUCCESS') {
+            dispatch(setAddCardResult('PENDING'));
             navigation.canGoBack() && navigation.goBack();
         }
-    },[formSubmitResult, navigation])
+    },[formSubmitResult, navigation, dispatch])
 
     return (
         <>
@@ -90,6 +93,7 @@ export const CardFormScreen = () => {
                         />
                     </View>
                 </View>
+                <Text style={styles.errorMsg}>{apiErrorMsg ?? ''}</Text>
             </View>
             <ScreenFooterButton
                 onPress={executeSubmitCardInfo}

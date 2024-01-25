@@ -6,7 +6,7 @@ import Omise from 'omise-react-native';
 import { CardAddFormEnum, CardAddFormValues } from '@screens/card-form-screen/constants';
 import { setApploadingAction } from 'src/actions/general-actions';
 import { appLoadingSelector } from '@selectors/application.selectors';
-import { saveCardLocalAction, setAddCardResult } from 'src/actions/credit-card-actions';
+import { saveCardLocalAction, setAddCardResult, setApiErrorMessage } from 'src/actions/credit-card-actions';
 Omise.config(
   'pkey_test_5wvisbxphp1zapg8ie6',
   'skey_test_5wvisdjjoqmfof5npzw',
@@ -45,14 +45,15 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>) {
               console.log("result token ", response.id)
               yield put(saveCardLocalAction({[response.id]: response.card }))
               yield put(setAddCardResult('SUCCESS'))
-              yield put(setApploadingAction(false));
       }
     }
   } catch (e) {
     //@ts-ignore
     const errors = yield call(() => e);
-    console.log('catch gen token error', errors)
+    // console.log('catch gen token error', errors)
+    yield put(setApiErrorMessage(errors['message']))
     yield put(setAddCardResult('FAILED'))
+  } finally {
     yield put(setApploadingAction(false));
   }
 

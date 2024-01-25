@@ -9,3 +9,4 @@ Record<string, any>
 >(creditCardActions.SAVE_CARD_LOCAL);
 
 export const setAddCardResult = createAction<SaveCardResultStates>(creditCardActions.SAVE_CARD_RESULT);
+export const setApiErrorMessage = createAction<string>(creditCardActions.SET_API_ERROR_MESSAGE);

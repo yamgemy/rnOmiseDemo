@@ -8,11 +8,13 @@ export interface InitialState {
     //string key is intended as card token
     addedCards: Record<string, CardAddFormValues> | null;
     saveCardResult: SaveCardResultStates
+    apiErrorMsg: string
 }
 
 export const initialState: InitialState = {
     addedCards: null,
-    saveCardResult: 'PENDING'
+    saveCardResult: 'PENDING',
+    apiErrorMsg: ''
 };
 
 export const reducer = handleActions<InitialState, any>(
@@ -37,6 +39,15 @@ export const reducer = handleActions<InitialState, any>(
         return {
             ...state,
             saveCardResult : payload
+        }
+    },
+    [creditCardActions.SET_API_ERROR_MESSAGE]: (
+      state,
+      {payload}: Action<string>,
+    ) => {
+        return {
+            ...state,
+            apiErrorMsg : payload
         }
     }
   },

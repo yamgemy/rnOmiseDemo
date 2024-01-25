@@ -10,7 +10,7 @@ export const CardListScreen = () => {
     const cards = useSelector(addedCardsSelector);
 
     useEffect(()=>{
-    console.log(cards)
+        // console.log(cards)
     }, [cards])
 
     return (

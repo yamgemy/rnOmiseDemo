@@ -12,12 +12,12 @@ export const useAddCard = ({
     form
 }: UseAddCardProps) => {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
 
     const executeSubmitCardInfo = useDebouncedCallback(() => {
         const values = form.getValues();
         console.log('executeSubmitCardInfo', values)
-        dispatch(postCardInfoAction(values) as any)
+        dispatch(postCardInfoAction(values))
     }, 500)
 
     return {

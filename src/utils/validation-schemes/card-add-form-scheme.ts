@@ -11,5 +11,11 @@ export const cardAddFormScheme = yup.object().shape({
     }),
     [CardAddFormEnum.NAME_ON_CARD] : yup.string().required('Name on card cannot be empty'),
     [CardAddFormEnum.CVV]: yup.string().required('required'),
-    [CardAddFormEnum.EXPIRY_DATE]: yup.string().required('required'),
+    [CardAddFormEnum.EXPIRY_DATE]: yup.string()
+    .required('required')
+    .test("min-length", "Invalid date", (value) => {
+        // Convert the number to a string and check its length
+        const stringValue = String(value);
+        return stringValue.length === 5;
+    }),
 })
