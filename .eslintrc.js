@@ -14,7 +14,9 @@ module.exports = {
   rules: {
     'linebreak-style': 0,
     'max-len': ['error', 110],
+    'object-curly-spacing': 2,
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-explicit-any': 0,
+    'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
   }
 }

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import {useCallback} from 'react';
 import {
   withTiming,
   useAnimatedStyle,
@@ -6,7 +6,7 @@ import {
   Easing,
 } from 'react-native-reanimated';
 
-const RESCALE_TIMING = { duration: 150, easing: Easing.out(Easing.cubic) };
+const RESCALE_TIMING = {duration: 150, easing: Easing.out(Easing.cubic)};
 
 export const useReanimatedTouchScale = (reducedScale = 0.95) => {
   const reanimatedTouchScaleValue = useSharedValue(1);

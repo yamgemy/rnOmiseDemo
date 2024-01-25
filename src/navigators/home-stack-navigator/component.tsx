@@ -1,14 +1,14 @@
 import React from 'react'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackScreenNames } from '@constants/routeNames';
-import { CardListScreen } from '@screens';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {RootStackScreenNames} from '@constants/routeNames';
+import {CardListScreen} from '@screens';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {StatusBar} from 'expo-status-bar';
 import PlusIcon from '@assets/images/plus-icon.svg'
 import BackArrowIcon from '@assets/images/backarrow-icon.svg'
-import { colors } from '@constants';
+import {colors} from '@constants';
 import MyStrings from '@assets/strings/en.json';
-import { ScalingTouchable } from '@components';
+import {ScalingTouchable} from '@components';
 
 const RootStack = createNativeStackNavigator();
 
@@ -18,12 +18,12 @@ export const HomeStackNavigator = () => {
             <StatusBar style={'dark'} />
             <RootStack.Navigator
                 initialRouteName={RootStackScreenNames.CARD_LIST_SCREEN}
-                screenOptions={{ headerShown: false, headerShadowVisible: false, }}
+                screenOptions={{headerShown: false, headerShadowVisible: false,}}
             >
                 <RootStack.Screen
                     name={RootStackScreenNames.CARD_LIST_SCREEN}
                     component={CardListScreen}
-                    options={({ navigation }) => ({
+                    options={({navigation}) => ({
                         headerShown: true,
                         headerTitle: MyStrings.screenTitleCardList,
                         headerTitleAlign: 'center',
@@ -43,7 +43,7 @@ export const HomeStackNavigator = () => {
                 <RootStack.Screen
                     name={RootStackScreenNames.CARD_ADD_SCREEN}
                     component={CardListScreen}
-                    options={({ navigation }) => ({
+                    options={({navigation}) => ({
                         headerBackTitleVisible: false,
                         headerTitle: '',
                         headerTintColor: colors.plainBlack,
@@ -67,5 +67,5 @@ export const HomeStackNavigator = () => {
 }
 
 const homeStackNavigatorStyles = StyleSheet.create({
-    root: { flex: 1 }
+    root: {flex: 1}
 })
