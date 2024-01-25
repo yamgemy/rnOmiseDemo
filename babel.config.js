@@ -21,7 +21,10 @@ module.exports = function (api) {
             '@screens': './src/screens',
             "@animations": './src/animations',
             "@components": "./src/components",
-            "utils": "./src/utils"
+            "@utils": "./src/utils",
+            "@hooks": "./src/hooks",
+            "@store": "./src/store",
+            "@selectors": './src/selectors'
           }
         }
       ],

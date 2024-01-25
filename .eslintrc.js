@@ -1,10 +1,10 @@
 module.exports = {
   root: true,
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'react'],
   extends: [
-    'eslint:recommended',
     "plugin:react/recommended",
-    'plugin:@typescript-eslint/recommended'],
+    'plugin:@typescript-eslint/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
@@ -18,12 +18,11 @@ module.exports = {
   rules: {
     'linebreak-style': 0,
     'max-len': ['error', 110],
-    'object-curly-spacing': 2,
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-explicit-any': 0,
     'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
     'react/jsx-indent': 2,
-    'react/jsx-indent-props': 2
+    'react/jsx-indent-props': 2,
   },
   globals: {
     JSX: true
