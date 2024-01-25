@@ -1,7 +1,7 @@
 import React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackScreenNames} from '@constants/routeNames';
-import {CardListScreen} from '@screens';
+import {CardListScreen, CardFormScreen} from '@screens';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {StatusBar} from 'expo-status-bar';
 import PlusIcon from '@assets/images/plus-icon.svg'
@@ -42,7 +42,7 @@ export const HomeStackNavigator = () => {
                 />
                 <RootStack.Screen
                     name={RootStackScreenNames.CARD_ADD_SCREEN}
-                    component={CardListScreen}
+                    component={CardFormScreen}
                     options={({navigation}) => ({
                         headerBackTitleVisible: false,
                         headerTitle: '',

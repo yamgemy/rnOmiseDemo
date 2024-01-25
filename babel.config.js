@@ -20,7 +20,8 @@ module.exports = function (api) {
             '@navigators': './src/navigators',
             '@screens': './src/screens',
             "@animations": './src/animations',
-            "@components": "./src/components"
+            "@components": "./src/components",
+            "utils": "./src/utils"
           }
         }
       ],

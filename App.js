@@ -6,10 +6,10 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 export default function App() {
   
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <HomeStackNavigator />
-      </NavigationContainer>
-    </SafeAreaProvider>
+      <SafeAreaProvider>
+          <NavigationContainer>
+              <HomeStackNavigator />
+          </NavigationContainer>
+      </SafeAreaProvider>
   );
 }
