@@ -41,6 +41,12 @@
       ],
       "@components/*": [
         "./src/components/*"
+      ],
+      "@utils": [
+        "./src/utils/index.ts"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
       ]
     },
   },

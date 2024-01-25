@@ -1,13 +1,17 @@
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    "plugin:react/recommended",
+    'plugin:@typescript-eslint/recommended'],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
     ecmaFeatures: {
       jsx: true, // Allows for the parsing of JSX
+      modules: true
     },
     project: './tsconfig.json',
   },
@@ -18,5 +22,15 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-explicit-any': 0,
     'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
-  }
+    'react/jsx-indent': 2,
+    'react/jsx-indent-props': 2
+  },
+  globals: {
+    JSX: true
+  },
+  settings: {
+    react: {
+      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
+  },
 }
