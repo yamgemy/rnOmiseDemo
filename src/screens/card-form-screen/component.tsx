@@ -11,10 +11,10 @@ import { setAddCardResult } from 'src/actions/credit-card-actions';
 import { appLoadingSelector } from 'src/selectors/application.selectors';
 import { addCardApiErrorMessageSelector, addCardResultSelector } from 'src/selectors/creditcards.selectors';
 import {
-    CARD_ADD_DEFAULT_VALUES,
-    CARD_ADD_PLACEHOLDERS,
-    //CARD_ADD_MOCK_VALUES, 
-    CardAddFormEnum, CardAddFormValues
+  CARD_ADD_DEFAULT_VALUES,
+  CARD_ADD_PLACEHOLDERS,
+  //CARD_ADD_MOCK_VALUES, 
+  CardAddFormEnum, CardAddFormValues
 } from './constants';
 import { addSlash, formatCardNumber } from './helpers';
 import { styles } from './styles';
@@ -98,6 +98,7 @@ export const CardFormScreen = () => {
                 inputName={CardAddFormEnum.CVV}
                 form={form}
                 keyboardType='number-pad'
+                style={styles.inputText}
                 maxLength={4}
             />
           </View>
