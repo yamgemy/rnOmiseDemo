@@ -25,3 +25,10 @@ export const CARD_ADD_DEFAULT_VALUES = {
     [CardAddFormEnum.EXPIRY_DATE]: '',
     [CardAddFormEnum.CVV]: '',
 }
+
+export const CARD_ADD_PLACEHOLDERS = {
+    [CardAddFormEnum.CARD_NUMBER]: '0000 00000 0000 0000',
+    [CardAddFormEnum.NAME_ON_CARD] : '',
+    [CardAddFormEnum.EXPIRY_DATE]: 'MM/YY',
+    [CardAddFormEnum.CVV]: '',
+}

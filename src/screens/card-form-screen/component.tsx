@@ -6,6 +6,7 @@ import { HookformLabeledTextInpout, ScreenFooterButton } from '@components'
 import {
     CARD_ADD_DEFAULT_VALUES,
     CARD_ADD_MOCK_VALUES,
+    CARD_ADD_PLACEHOLDERS,
     //CARD_ADD_MOCK_VALUES, 
     CardAddFormEnum, CardAddFormValues
 } from './constants'
@@ -26,9 +27,11 @@ export const CardFormScreen = () => {
     const apiErrorMsg = useSelector(addCardApiErrorMessageSelector);
     const navigation = useNavigation();
 
-    const defaultFormValues = __DEV__
-        ? CARD_ADD_MOCK_VALUES
-        : CARD_ADD_DEFAULT_VALUES;
+    // const defaultFormValues = __DEV__
+    //     ? CARD_ADD_MOCK_VALUES
+    //     : CARD_ADD_DEFAULT_VALUES;
+
+    const defaultFormValues = CARD_ADD_DEFAULT_VALUES;
 
     const [expiryDate, setExpiryDate] = useState<string>(defaultFormValues[CardAddFormEnum.EXPIRY_DATE]);
     const [cardNumber, setCardNumber] = useState<string>(defaultFormValues[CardAddFormEnum.CARD_NUMBER]);
@@ -62,12 +65,16 @@ export const CardFormScreen = () => {
                     value={cardNumber}
                     valueSetter={setCardNumber}
                     maxLength={16 + 3}
+                    placeholder={CARD_ADD_PLACEHOLDERS[CardAddFormEnum.CARD_NUMBER]}
+                    placeholderTextColor={styles.placeHolderText.color}
+                    style={styles.inputText}
                 />
                 <HookformLabeledTextInpout
                     label={'Name on card'}
                     inputName={CardAddFormEnum.NAME_ON_CARD}
                     form={form}
                     keyboardType='default'
+                    style={styles.inputText}
                 />
                 <View style={styles.formRow}>
                     <View style={styles.slot}>
@@ -80,6 +87,9 @@ export const CardFormScreen = () => {
                             valueSetter={setExpiryDate}
                             modifiedString={addSlash}
                             maxLength={5}
+                            placeholder={CARD_ADD_PLACEHOLDERS[CardAddFormEnum.EXPIRY_DATE]}
+                            placeholderTextColor={styles.placeHolderText.color}
+                            style={styles.inputText}
                         />
                     </View>
                     <View style={styles.dummySpace} />

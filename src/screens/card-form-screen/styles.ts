@@ -19,5 +19,13 @@ export const styles = StyleSheet.create({
     },
     errorMsg:{
         color: 'red'
+    },
+    inputText:{
+        paddingLeft: 16,
+        fontSize: 16,
+        fontWeight: '500',
+    },
+    placeHolderText:{
+        color: colors.grey_100,
     }
 });
