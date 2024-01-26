@@ -11,10 +11,11 @@ interface UseAddCardProps {
 export const useAddCard = ({
   form
 }: UseAddCardProps) => {
-
+  
   const dispatch = useDispatch<any>();             
 
   const executeSubmitCardInfo = useDebouncedCallback(() => {
+    
     const values = form.getValues();
     console.log('executeSubmitCardInfo', values);
     dispatch(postCardInfoAction(values));
