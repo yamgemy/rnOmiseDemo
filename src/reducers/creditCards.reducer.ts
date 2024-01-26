@@ -12,9 +12,9 @@ export interface InitialState {
 }
 
 export const initialState: InitialState = {
-    addedCards: null,
-    saveCardResult: 'PENDING',
-    apiErrorMsg: ''
+  addedCards: null,
+  saveCardResult: 'PENDING',
+  apiErrorMsg: ''
 };
 
 export const reducer = handleActions<InitialState, any>(
@@ -23,32 +23,32 @@ export const reducer = handleActions<InitialState, any>(
       state,
       {payload}: Action<Record<string, CardAddFormValues>>,
     ) => {
-        const token = Object.keys(payload)[0];
-        return {
-            ...state,
-            addedCards: {
-              ...state.addedCards,
-              [token]: payload[token]
-            }
+      const token = Object.keys(payload)[0];
+      return {
+        ...state,
+        addedCards: {
+          ...state.addedCards,
+          [token]: payload[token]
         }
+      };
     },
     [creditCardActions.SAVE_CARD_RESULT]: (
       state,
       {payload}: Action<SaveCardResultStates>,
     ) => {
-        return {
-            ...state,
-            saveCardResult : payload
-        }
+      return {
+        ...state,
+        saveCardResult : payload
+      };
     },
     [creditCardActions.SET_API_ERROR_MESSAGE]: (
       state,
       {payload}: Action<string>,
     ) => {
-        return {
-            ...state,
-            apiErrorMsg : payload
-        }
+      return {
+        ...state,
+        apiErrorMsg : payload
+      };
     }
   },
   initialState,

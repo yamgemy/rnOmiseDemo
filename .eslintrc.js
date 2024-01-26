@@ -1,13 +1,13 @@
 module.exports = {
   root: true,
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['react', '@typescript-eslint'],
   extends: [
     "plugin:react/recommended",
     'plugin:@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
+    ecmaVersion: 'latest', // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
     ecmaFeatures: {
       jsx: true, // Allows for the parsing of JSX
@@ -21,8 +21,9 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-explicit-any': 0,
     'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 0 }],
-    'react/jsx-indent': 2,
+    'react/jsx-indent': ["error", 2],
     'react/jsx-indent-props': 2,
+    'semi': 2 
   },
   globals: {
     JSX: true

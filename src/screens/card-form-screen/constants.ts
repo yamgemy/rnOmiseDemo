@@ -13,22 +13,22 @@ export type CardAddFormValues = {
 }
 
 export const CARD_ADD_MOCK_VALUES = {
-    [CardAddFormEnum.CARD_NUMBER]: '4985 3729 9000 5328',
-    [CardAddFormEnum.NAME_ON_CARD] : 'Giovana Milani',
-    [CardAddFormEnum.EXPIRY_DATE]: '05/27',
-    [CardAddFormEnum.CVV]: '693',
-}
+  [CardAddFormEnum.CARD_NUMBER]: '4985 3729 9000 5328',
+  [CardAddFormEnum.NAME_ON_CARD] : 'Giovana Milani',
+  [CardAddFormEnum.EXPIRY_DATE]: '05/27',
+  [CardAddFormEnum.CVV]: '693',
+};
 
 export const CARD_ADD_DEFAULT_VALUES = {
-    [CardAddFormEnum.CARD_NUMBER]: '',
-    [CardAddFormEnum.NAME_ON_CARD] : '',
-    [CardAddFormEnum.EXPIRY_DATE]: '',
-    [CardAddFormEnum.CVV]: '',
-}
+  [CardAddFormEnum.CARD_NUMBER]: '',
+  [CardAddFormEnum.NAME_ON_CARD] : '',
+  [CardAddFormEnum.EXPIRY_DATE]: '',
+  [CardAddFormEnum.CVV]: '',
+};
 
 export const CARD_ADD_PLACEHOLDERS = {
-    [CardAddFormEnum.CARD_NUMBER]: '0000 00000 0000 0000',
-    [CardAddFormEnum.NAME_ON_CARD] : '',
-    [CardAddFormEnum.EXPIRY_DATE]: 'MM/YY',
-    [CardAddFormEnum.CVV]: '',
-}
+  [CardAddFormEnum.CARD_NUMBER]: '0000 00000 0000 0000',
+  [CardAddFormEnum.NAME_ON_CARD] : '',
+  [CardAddFormEnum.EXPIRY_DATE]: 'MM/YY',
+  [CardAddFormEnum.CVV]: '',
+};

@@ -1,1 +1,1 @@
-export * from './card-add-form-scheme'
+export * from './card-add-form-scheme';

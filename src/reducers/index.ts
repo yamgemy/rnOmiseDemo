@@ -1,9 +1,9 @@
 import {combineReducers, Reducer} from 'redux';
 import * as creditCardsReducer from './creditCards.reducer';
-import * as applicationReducer from './application.reducer'
+import * as applicationReducer from './application.reducer';
 
 export const initialState = {
-    creditCardsReducer: creditCardsReducer.initialState,
+  creditCardsReducer: creditCardsReducer.initialState,
 };
 
 export interface InitialState {
@@ -17,6 +17,6 @@ export interface InitialState {
 
 //@ts-ignore
 export const rootReducer: Reducer<InitialState, any> = combineReducers({
-    creditCardsReducer: creditCardsReducer.reducer,
-    applicationReducer: applicationReducer.reducer
+  creditCardsReducer: creditCardsReducer.reducer,
+  applicationReducer: applicationReducer.reducer
 });

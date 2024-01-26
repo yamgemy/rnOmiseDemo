@@ -5,4 +5,4 @@ export const addedCardsSelector = (state: InitialState) => state.creditCardsRedu
 export const addCardResultSelector = (state: InitialState) => state.creditCardsReducer.saveCardResult;
 
 export const addCardApiErrorMessageSelector = 
-(state: InitialState) => state.creditCardsReducer.apiErrorMsg
+(state: InitialState) => state.creditCardsReducer.apiErrorMsg;

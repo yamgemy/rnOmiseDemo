@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {HomeStackNavigator} from '@navigators';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
@@ -9,17 +9,17 @@ import {store, persistor} from '@store/configure-store';
 export default function App() {
   
   return (
-      <Provider store={store}>
-          <PersistGate
-              loading={null}
-              persistor={persistor}
-          >
-              <SafeAreaProvider>
-                  <NavigationContainer>
-                      <HomeStackNavigator />
-                  </NavigationContainer>
-              </SafeAreaProvider>
-          </PersistGate>
-      </Provider>
+    <Provider store={store}>
+      <PersistGate
+          loading={null}
+          persistor={persistor}
+      >
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <HomeStackNavigator />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </PersistGate>
+    </Provider>
   );
 }

@@ -1,6 +1,6 @@
-import { createAction } from 'redux-actions'
-import { creditCardActions } from './action-types'
-import { CardAddFormValues } from '@screens/card-form-screen/constants'
+import { createAction } from 'redux-actions';
+import { creditCardActions } from './action-types';
+import { CardAddFormValues } from '@screens/card-form-screen/constants';
 import { SaveCardResultStates } from 'src/reducers/creditCards.reducer';
 
 export const postCardInfoAction = createAction<CardAddFormValues>(creditCardActions.POST_CARD_INFO);

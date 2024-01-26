@@ -1,1 +1,1 @@
-export * from './home-stack-navigator'
+export * from './home-stack-navigator';

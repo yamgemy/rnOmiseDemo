@@ -18,37 +18,37 @@ const LARGE_HITSLOP = {top: 20, left: 20, right: 20, bottom: 20};
 const XLARGE_HITSLOP = {top: 30, left: 30, right: 30, bottom: 30};
 
 export const ScalingTouchable: FC<ScalingTouchableProps & TouchableOpacityProps> = ({
-    reducedScale,
-    activeOpacity = 1,
-    animatedWrapStyle,
-    children,
-    onPress,
-    hitSlopSize,
-    ...rest
+  reducedScale,
+  activeOpacity = 1,
+  animatedWrapStyle,
+  children,
+  onPress,
+  hitSlopSize,
+  ...rest
 }) => {
-    const {reanimatedTouchScale,
-        executeResumeOriginalScale,
-        executeReduceScale} = useReanimatedTouchScale(reducedScale);
+  const {reanimatedTouchScale,
+    executeResumeOriginalScale,
+    executeReduceScale} = useReanimatedTouchScale(reducedScale);
 
-    const getHitSlop = useMemo(() => {
-        if (hitSlopSize === 'large') { return LARGE_HITSLOP; }
-        if (hitSlopSize === 'xlarge') { return XLARGE_HITSLOP; }
-        if (hitSlopSize === 'medium') { return MID_HITSLOP; }
-        return {};
-    }, [hitSlopSize]);
+  const getHitSlop = useMemo(() => {
+    if (hitSlopSize === 'large') { return LARGE_HITSLOP; }
+    if (hitSlopSize === 'xlarge') { return XLARGE_HITSLOP; }
+    if (hitSlopSize === 'medium') { return MID_HITSLOP; }
+    return {};
+  }, [hitSlopSize]);
 
-    return (
-        <Animated.View style={[reanimatedTouchScale, animatedWrapStyle]}>
-            <TouchableOpacity
-                activeOpacity={activeOpacity}
-                {...rest}
-                hitSlop={getHitSlop}
-                onPress={onPress || undefined}
-                onPressIn={executeReduceScale}
-                onPressOut={executeResumeOriginalScale}
-            >
-                {children}
-            </TouchableOpacity>
-        </Animated.View>
-    );
+  return (
+    <Animated.View style={[reanimatedTouchScale, animatedWrapStyle]}>
+      <TouchableOpacity
+          activeOpacity={activeOpacity}
+          {...rest}
+          hitSlop={getHitSlop}
+          onPress={onPress || undefined}
+          onPressIn={executeReduceScale}
+          onPressOut={executeResumeOriginalScale}
+      >
+        {children}
+      </TouchableOpacity>
+    </Animated.View>
+  );
 };

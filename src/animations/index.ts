@@ -1,1 +1,1 @@
-export * from './use-reanimated-touch-scale'
+export * from './use-reanimated-touch-scale';
