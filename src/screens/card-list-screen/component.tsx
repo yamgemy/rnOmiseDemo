@@ -2,7 +2,7 @@ import { CreditCard, ScalingTouchable } from '@components';
 import { RootStackScreenNames } from '@constants';
 import { useNavigation } from '@react-navigation/native';
 import React, { useMemo } from 'react';
-import { FlatList, Text, View } from "react-native";
+import { FlatList, ListRenderItemInfo, Text, View } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
 import { setApiErrorMessage } from 'src/actions/credit-card-actions';
 import { addedCardsSelector } from 'src/selectors/creditcards.selectors';
@@ -15,11 +15,15 @@ export const CardListScreen = () => {
   const cards = useSelector(addedCardsSelector);
   const cardsArray = useMemo(()=> cards? Object.values(cards): [], [cards]);
 
+  const renderCardItem = ({ item }: ListRenderItemInfo<any>) => {
+    return <CreditCard card = {item} />;
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
           data={cardsArray}
-          renderItem={CreditCard}
+          renderItem={renderCardItem}
           keyExtractor={(item)=> item.id}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={(

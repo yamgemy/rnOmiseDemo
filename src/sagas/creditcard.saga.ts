@@ -5,7 +5,10 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { creditCardActions } from 'src/actions/action-types';
 //@ts-ignore
 import Omise from 'omise-react-native';
-import { saveCardLocalAction, setAddCardResult, setApiErrorMessage } from 'src/actions/credit-card-actions';
+import {
+  CardPayPayload, saveCardLocalAction,
+  setAddCardResult, setApiErrorMessage
+} from 'src/actions/credit-card-actions';
 import { setApploadingAction } from 'src/actions/general-actions';
 Omise.config(
   'pkey_test_5wvisbxphp1zapg8ie6',
@@ -13,7 +16,7 @@ Omise.config(
   '2019-05-29'
 );
 
-function* postCreditCardSaga({ payload }: Action<CardAddFormValues>) {
+function* postCreditCardSaga({ payload }: Action<CardAddFormValues>):any {
   const tokenParameters = {
     "city": "Bangkok",
     "country": "TH", //MAX 2 chars
@@ -43,7 +46,7 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>) {
     if (response) {
       if (response.object === "token") {
         console.log("result token ", response.id);
-        yield put(saveCardLocalAction({[response.id]: response.card }));
+        yield put(saveCardLocalAction({[response.id]: {cardToken:response.id, ...response.card} }));
         yield put(setAddCardResult('SUCCESS'));
       }
     }
@@ -58,6 +61,22 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>) {
   }
 }
 
+function* postCreditCardPaySaga({payload}: Action<CardPayPayload>):any {
+  const isApploading:boolean = yield select(appLoadingSelector);
+  if (isApploading) { return; }
+  yield put(setApploadingAction(true));
+  try {
+    console.log('postCreditCardPaySaga', payload);
+    const payResponse = yield call(() => Omise.createCharge(payload)); //doesnt exist
+    console.log('postCreditCardPaySaga result', payResponse);
+  
+  }catch (e) {
+    const errors = yield call(() => e);
+     console.log('pay error', errors);
+  }
+}
+
 export function* creditCardSagaWatcher() {
   yield takeLatest(creditCardActions.POST_CARD_INFO, postCreditCardSaga);
+  yield takeLatest(creditCardActions.CARD_PAY_REQUEST, postCreditCardPaySaga);
 }

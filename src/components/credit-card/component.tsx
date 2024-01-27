@@ -1,11 +1,18 @@
 import VisaLogo from '@assets/images/visa_color@2x.svg';
 import { ScalingTouchable } from '@components/scaling-touchable';
-import React from 'react';
-import { ListRenderItemInfo, Text, View } from "react-native";
+import React, { FC } from 'react';
+import { Text, View } from "react-native";
+import { useDispatch } from 'react-redux';
+import { postCardPayAction } from 'src/actions/credit-card-actions';
 import { styles } from './styles';
 
-export const CreditCard = ({ item }: ListRenderItemInfo<any>) => {
-    const {brand, name, expiration_month, expiration_year ,last_digits} = item;
+interface CreditCardProps {
+    card: any
+}
+
+export const CreditCard:FC<CreditCardProps> = ({card}) => {
+    const dispatch = useDispatch<any>();
+    const {brand, name, expiration_month, expiration_year ,last_digits, cardToken} = card;
 
     const SubTextView = (flex: number, title: string, value: string) =>  (
       <View style={{flex:flex}}>
@@ -15,7 +22,14 @@ export const CreditCard = ({ item }: ListRenderItemInfo<any>) => {
     );
 
     const handleCardPress = () => {
-    //todo
+        const payload = {
+        description: 'some description',
+        amount: 500000, // 5,000 baht
+        currency: 'thb',
+        capture: true,
+        card: cardToken
+        };
+        dispatch(postCardPayAction(payload));
     };
 
     return (
