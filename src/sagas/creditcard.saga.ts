@@ -53,6 +53,7 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>):any {
         console.log("result token ", response.id);
         yield put(saveCardLocalAction({[response.id]: {cardToken:response.id, ...response.card} }));
         yield put(setAddCardResult('SUCCESS'));
+        //save card to our own DB
       }
     }
   } catch (e) {
