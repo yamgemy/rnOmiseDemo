@@ -71,8 +71,8 @@ function* postCreditCardPayWithCardTokenSaga({payload}: Action<CardPayPayload>):
   yield put(setApploadingAction(true));
   try {
     console.log('postCreditCardPaySaga', payload);
-    // const OmiseWithScretKey = Omise({secretKey: secretKey})() ;
-    const payResponse = yield call(() => Omise.createChargeByToken(payload)); //doesnt exist
+    //added function at cloned omise-react-native. uses a secret key in headers instead of public
+    const payResponse = yield call(() => Omise.createChargeByToken(payload)); 
     console.log('postCreditCardPaySaga result', payResponse);
   
   }catch (e) {
