@@ -1,3 +1,4 @@
+import { CardsApi } from '@api';
 import { CardAddFormEnum, CardAddFormValues } from '@screens/card-form-screen/constants';
 import { appLoadingSelector } from '@selectors/application.selectors';
 import { Action } from 'redux-actions';
@@ -53,11 +54,16 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>):any {
         console.log("result token ", response.id);
         yield put(saveCardLocalAction({[response.id]: {cardToken:response.id, ...response.card} }));
         yield put(setAddCardResult('SUCCESS'));
-        //save card to our own DB
+        //WIP save card to our own DB
+       const addCardresponse = yield (CardsApi.addCardWithToken({
+          ...tokenParameters,
+          cardToken: response.id,
+        }));
+        console.log(addCardresponse);
       }
     }
   } catch (e) {
-    //@ts-ignore
+    //@ts-ignore`
     const errors = yield call(() => e);
     // console.log('catch gen token error', errors)
     yield put(setApiErrorMessage(errors['message']));

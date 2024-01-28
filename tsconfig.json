@@ -67,6 +67,12 @@
       "@selectors/*": [
         "src/selectors/*"
       ],
+      "@api": [
+        "src/api/index.ts"
+      ],
+      "@api/*": [
+        "src/api/*"
+      ],
     },
   },
   "include": [
