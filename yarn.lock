@@ -6177,9 +6177,9 @@ object.values@^1.1.6:
     define-properties "^1.2.0"
     es-abstract "^1.22.1"
 
-"omise-react-native@https://github.com/tnylee/omise-react-native.git":
+"omise-react-native@https://github.com/yamgemy/omise-react-native.git":
   version "0.1.0"
-  resolved "https://github.com/tnylee/omise-react-native.git#3dd1ecbe1aa0be3ff59fd21504d773954019832c"
+  resolved "https://github.com/yamgemy/omise-react-native.git#6f542c66d0f7d051cdd0a48170c63298d1fd2571"
   dependencies:
     base-64 "^0.1.0"
 

@@ -10,9 +10,13 @@ import {
   setAddCardResult, setApiErrorMessage
 } from 'src/actions/credit-card-actions';
 import { setApploadingAction } from 'src/actions/general-actions';
+
+const publicKey = 'pkey_test_5wvisbxphp1zapg8ie6';
+const secretKey =  'skey_test_5wvisdjjoqmfof5npzw';
+
 Omise.config(
-  'pkey_test_5wvisbxphp1zapg8ie6',
-  'skey_test_5wvisdjjoqmfof5npzw',
+  publicKey,
+  secretKey,
   '2019-05-29'
 );
 
@@ -61,22 +65,25 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>):any {
   }
 }
 
-function* postCreditCardPaySaga({payload}: Action<CardPayPayload>):any {
+function* postCreditCardPayWithCardTokenSaga({payload}: Action<CardPayPayload>):any {
   const isApploading:boolean = yield select(appLoadingSelector);
   if (isApploading) { return; }
   yield put(setApploadingAction(true));
   try {
     console.log('postCreditCardPaySaga', payload);
-    const payResponse = yield call(() => Omise.createCharge(payload)); //doesnt exist
+    // const OmiseWithScretKey = Omise({secretKey: secretKey})() ;
+    const payResponse = yield call(() => Omise.createChargeByToken(payload)); //doesnt exist
     console.log('postCreditCardPaySaga result', payResponse);
   
   }catch (e) {
     const errors = yield call(() => e);
      console.log('pay error', errors);
+  } finally {
+    yield put(setApploadingAction(false));
   }
 }
 
 export function* creditCardSagaWatcher() {
   yield takeLatest(creditCardActions.POST_CARD_INFO, postCreditCardSaga);
-  yield takeLatest(creditCardActions.CARD_PAY_REQUEST, postCreditCardPaySaga);
+  yield takeLatest(creditCardActions.CARD_PAY_REQUEST, postCreditCardPayWithCardTokenSaga);
 }
