@@ -12,8 +12,8 @@ import { appLoadingSelector } from 'src/selectors/application.selectors';
 import { addCardApiErrorMessageSelector, addCardResultSelector } from 'src/selectors/creditcards.selectors';
 import {
   CARD_ADD_DEFAULT_VALUES,
+  CARD_ADD_MOCK_VALUES,
   CARD_ADD_PLACEHOLDERS,
-  //CARD_ADD_MOCK_VALUES, 
   CardAddFormEnum, CardAddFormValues
 } from './constants';
 import { addSlash, formatCardNumber } from './helpers';
@@ -26,11 +26,11 @@ export const CardFormScreen = () => {
   const apiErrorMsg = useSelector(addCardApiErrorMessageSelector);
   const navigation = useNavigation();
 
-  // const defaultFormValues = __DEV__
-  //     ? CARD_ADD_MOCK_VALUES
-  //     : CARD_ADD_DEFAULT_VALUES;
+  const defaultFormValues = __DEV__
+      ? CARD_ADD_MOCK_VALUES
+      : CARD_ADD_DEFAULT_VALUES;
 
-  const defaultFormValues = CARD_ADD_DEFAULT_VALUES;
+  // const defaultFormValues = CARD_ADD_DEFAULT_VALUES;
 
   const [expiryDate, setExpiryDate] = useState<string>(defaultFormValues[CardAddFormEnum.EXPIRY_DATE]);
   const [cardNumber, setCardNumber] = useState<string>(defaultFormValues[CardAddFormEnum.CARD_NUMBER]);

@@ -5,15 +5,23 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { creditCardActions } from 'src/actions/action-types';
 //@ts-ignore
 import Omise from 'omise-react-native';
-import { saveCardLocalAction, setAddCardResult, setApiErrorMessage } from 'src/actions/credit-card-actions';
+import { Alert } from 'react-native';
+import {
+  CardPayPayload, saveCardLocalAction,
+  setAddCardResult, setApiErrorMessage
+} from 'src/actions/credit-card-actions';
 import { setApploadingAction } from 'src/actions/general-actions';
+
+const publicKey = 'pkey_test_5wvisbxphp1zapg8ie6';
+const secretKey =  'skey_test_5wvisdjjoqmfof5npzw';
+
 Omise.config(
-  'pkey_test_5wvisbxphp1zapg8ie6',
-  'skey_test_5wvisdjjoqmfof5npzw',
+  publicKey,
+  secretKey,
   '2019-05-29'
 );
 
-function* postCreditCardSaga({ payload }: Action<CardAddFormValues>) {
+function* postCreditCardSaga({ payload }: Action<CardAddFormValues>):any {
   const tokenParameters = {
     "city": "Bangkok",
     "country": "TH", //MAX 2 chars
@@ -43,8 +51,9 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>) {
     if (response) {
       if (response.object === "token") {
         console.log("result token ", response.id);
-        yield put(saveCardLocalAction({[response.id]: response.card }));
+        yield put(saveCardLocalAction({[response.id]: {cardToken:response.id, ...response.card} }));
         yield put(setAddCardResult('SUCCESS'));
+        //save card to our own DB
       }
     }
   } catch (e) {
@@ -58,6 +67,36 @@ function* postCreditCardSaga({ payload }: Action<CardAddFormValues>) {
   }
 }
 
+function alertPromise(message: string) {
+  return new Promise<void>(resolve => {
+    Alert.alert(
+                "Charge Creation Result",
+                message,
+                 [{text: "OK", onPress: function() { resolve(); }}],
+                 {cancelable: true, onDismiss: function() {resolve(); }},
+            );
+    });
+}
+
+function* postCreditCardPayWithCardTokenSaga({payload}: Action<CardPayPayload>):any {
+  const isApploading:boolean = yield select(appLoadingSelector);
+  if (isApploading) { return; }
+  yield put(setApploadingAction(true));
+  try {
+    //added function at cloned omise-react-native. uses a secret key in headers instead of public
+    const payResponse = yield call(() => Omise.createChargeByToken(payload)); 
+    console.log('response postCreditCardPayWithCardTokenSaga', payResponse);
+    yield call(()=> alertPromise(JSON.stringify(payResponse)));
+  }catch (e) {
+    const errors = yield call(() => e);
+     console.log('charge creation error', errors);
+     yield call(()=> alertPromise(JSON.stringify(errors)));
+  } finally {
+    yield put(setApploadingAction(false));
+  }
+}
+
 export function* creditCardSagaWatcher() {
   yield takeLatest(creditCardActions.POST_CARD_INFO, postCreditCardSaga);
+  yield takeLatest(creditCardActions.CARD_PAY_REQUEST, postCreditCardPayWithCardTokenSaga);
 }
