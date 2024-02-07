@@ -7,12 +7,12 @@ export const initialState = {
 };
 
 export interface InitialState {
-    creditCardsReducer: creditCardsReducer.InitialState;
-    applicationReducer: applicationReducer.InitialState;
-    _persist?: {
-        version: number;
-        rehydrated: boolean;
-    };
+  creditCardsReducer: creditCardsReducer.InitialState;
+  applicationReducer: applicationReducer.InitialState;
+  _persist?: {
+    version: number;
+    rehydrated: boolean;
+  };
 }
 
 //@ts-ignore

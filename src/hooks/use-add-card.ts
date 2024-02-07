@@ -5,7 +5,7 @@ import { postCardInfoAction } from "src/actions/credit-card-actions";
 import { useDebouncedCallback } from "use-debounce";
 
 interface UseAddCardProps {
-    form: UseFormReturn<CardAddFormValues, any, undefined>
+  form: UseFormReturn<CardAddFormValues, any, undefined>
 }
 
 export const useAddCard = ({

@@ -27,43 +27,43 @@ export const HomeStackNavigator = () => {
             name={RootStackScreenNames.CARD_LIST_SCREEN}
             component={CardListScreen}
             options={({navigation}) => ({
-            headerShown: true,
-            headerTitle: MyStrings.screenTitleCardList,
-            headerTitleAlign: 'center',
-            headerBackVisible: false,
-            headerRight: () => {
-              return (
-                <ScalingTouchable
-                    onPress={() => {
-                    dispatch(setApiErrorMessage(''));
-                    navigation.navigate(RootStackScreenNames.CARD_ADD_SCREEN);
-                  }}>
-                  <PlusIcon width={'23'} height={'23'} fill={colors.plainBlack} />
-                </ScalingTouchable>
-              );
-            }
-          })}
+              headerShown: true,
+              headerTitle: MyStrings.screenTitleCardList,
+              headerTitleAlign: 'center',
+              headerBackVisible: false,
+              headerRight: () => {
+                return (
+                  <ScalingTouchable
+                      onPress={() => {
+                        dispatch(setApiErrorMessage(''));
+                        navigation.navigate(RootStackScreenNames.CARD_ADD_SCREEN);
+                      }}>
+                    <PlusIcon width={'23'} height={'23'} fill={colors.plainBlack} />
+                  </ScalingTouchable>
+                );
+              }
+            })}
         />
         <RootStack.Screen
             name={RootStackScreenNames.CARD_ADD_SCREEN}
             component={CardFormScreen}
             options={({navigation}) => ({
-            headerBackTitleVisible: false,
-            headerTitle: '',
-            headerTintColor: colors.plainBlack,
-            headerShown: true,
-            headerBackVisible: false,
-            headerLeft: () => {
-              return (
-                <ScalingTouchable
-                    onPress={() => {
-                    navigation.goBack();
-                  }}>
-                  <BackArrowIcon height={'17'} fill={colors.plainBlack} />
-                </ScalingTouchable>
-              );
-            }
-          })}
+              headerBackTitleVisible: false,
+              headerTitle: '',
+              headerTintColor: colors.plainBlack,
+              headerShown: true,
+              headerBackVisible: false,
+              headerLeft: () => {
+                return (
+                  <ScalingTouchable
+                      onPress={() => {
+                        navigation.goBack();
+                      }}>
+                    <BackArrowIcon height={'17'} fill={colors.plainBlack} />
+                  </ScalingTouchable>
+                );
+              }
+            })}
         />
       </RootStack.Navigator>
     </SafeAreaView>

@@ -5,10 +5,10 @@ import {CardAddFormValues} from '@screens/card-form-screen/constants';
 export type SaveCardResultStates = 'SUCCESS' | 'FAILED' | 'PENDING'
 
 export interface InitialState {
-    //string key is intended as card token
-    addedCards: Record<string, any> | null;
-    saveCardResult: SaveCardResultStates
-    apiErrorMsg: string
+  //string key is intended as card token
+  addedCards: Record<string, any> | null;
+  saveCardResult: SaveCardResultStates
+  apiErrorMsg: string
 }
 
 export const initialState: InitialState = {
