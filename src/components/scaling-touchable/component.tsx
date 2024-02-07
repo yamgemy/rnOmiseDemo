@@ -5,12 +5,12 @@ import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import Animated from 'react-native-reanimated';
 
 type ScalingTouchableProps = {
-    animatedWrapStyle?: any,
-    children?: React.ReactElement,
-    onPress: () => void,
-    reducedScale?: number,
-    activeOpacity?: number
-    hitSlopSize?: 'large' | 'medium' | 'xlarge' | 'none'
+  animatedWrapStyle?: any,
+  children?: React.ReactElement,
+  onPress: () => void,
+  reducedScale?: number,
+  activeOpacity?: number
+  hitSlopSize?: 'large' | 'medium' | 'xlarge' | 'none'
 };
 
 const MID_HITSLOP = {top: 10, left: 10, right: 10, bottom: 10};

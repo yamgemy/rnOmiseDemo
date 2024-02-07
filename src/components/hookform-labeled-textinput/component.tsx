@@ -6,11 +6,11 @@ import { setApiErrorMessage } from 'src/actions/credit-card-actions';
 import { styles } from './styles';
 
 interface HookFormLabeledTextInputProps extends TextInputProps {
-    label: string;
-    form: UseFormReturn<any>;
-    inputName: string;
-    modifiedString?: (text:string) => string
-    valueSetter?: any
+  label: string;
+  form: UseFormReturn<any>;
+  inputName: string;
+  modifiedString?: (text:string) => string
+  valueSetter?: any
 }
 
 export const HookformLabeledTextInpout: FC<HookFormLabeledTextInputProps> = ({
@@ -67,17 +67,17 @@ export const HookformLabeledTextInpout: FC<HookFormLabeledTextInputProps> = ({
                     onChangeText={(text) => handleTextChange(text, onChange)}
                     style={styles.inputText}
                     {...props}
-              />
+                />
               </View>
               <View style={styles.errorTextContainer}>
                 {invalid && !isEditing && (
                   <Text style={styles.errorText}>
                     {error ? error.message : ''}
                   </Text>
-              )}
+                )}
               </View>
             </>
-        )}
+          )}
       />
     </View>
   );

@@ -74,6 +74,11 @@
     "tsconfig.json",
     "App.js"
   ],
+  "types": [
+    "react",
+    "react-native",
+    "jest"
+  ],
   "exclude": [
     "build",
     "node_modules",

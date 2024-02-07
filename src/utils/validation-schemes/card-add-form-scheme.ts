@@ -16,16 +16,16 @@ export const cardAddFormScheme = yup.object().shape({
     .test("min-length", "Invalid date", (value) => {
       const stringValue = String(value);
       if (!stringValue.includes('/')){
-       return false;
+        return false;
       }
       const parts = stringValue.split('/');
       if (Number(parts[0]) > 12 || Number(parts[0]) <= 0) {
-       return false;
+        return false;
       }
       const thisyear = new Date().getFullYear();
       if (Number(parts[1]) > 99 || Number(parts[1]) < thisyear - 2000) {
         return false;
-       }
+      }
       return stringValue.length === 5 && stringValue.includes('/');
     }),
 });

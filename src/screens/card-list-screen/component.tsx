@@ -32,13 +32,13 @@ export const CardListScreen = () => {
               <Text style={styles.emptyText}>No Cards Found</Text>
               <Text style={styles.emptyText}>We recommend adding a card{'\n'}for easy payment</Text>
               <ScalingTouchable onPress={() => {
-              dispatch(setApiErrorMessage(''));
-              navigation.navigate(RootStackScreenNames.CARD_ADD_SCREEN);
-            }}>
+                dispatch(setApiErrorMessage(''));
+                navigation.navigate(RootStackScreenNames.CARD_ADD_SCREEN);
+              }}>
                 <Text style={styles.addCardText}>Add a new card</Text>
               </ScalingTouchable>
             </View>    
-        )}
+          )}
       />
     </View>
   );

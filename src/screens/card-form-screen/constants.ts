@@ -1,15 +1,15 @@
 export enum CardAddFormEnum {
-    CARD_NUMBER = 'CARD_NUMBER',
-    NAME_ON_CARD = 'NAME_ON_CARD',
-    EXPIRY_DATE = 'EXPIRY_DATE',
-    CVV = 'CVV'
+  CARD_NUMBER = 'CARD_NUMBER',
+  NAME_ON_CARD = 'NAME_ON_CARD',
+  EXPIRY_DATE = 'EXPIRY_DATE',
+  CVV = 'CVV'
 }
 
 export type CardAddFormValues = {
-    [CardAddFormEnum.CARD_NUMBER]: string;
-    [CardAddFormEnum.NAME_ON_CARD] : string;
-    [CardAddFormEnum.EXPIRY_DATE]: string;
-    [CardAddFormEnum.CVV]: string;
+  [CardAddFormEnum.CARD_NUMBER]: string;
+  [CardAddFormEnum.NAME_ON_CARD] : string;
+  [CardAddFormEnum.EXPIRY_DATE]: string;
+  [CardAddFormEnum.CVV]: string;
 }
 
 export const CARD_ADD_MOCK_VALUES = {
